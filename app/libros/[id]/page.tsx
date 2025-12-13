@@ -7,6 +7,7 @@ import {
   ArrowLeft,
   Book,
   Calendar,
+  Edit,
   Globe,
   Layers,
   Library,
@@ -55,7 +56,15 @@ export default async function DetalleLibroPage({
             Detalles del Libro
           </h1>
         </div>
-        <DeleteBookButton id={libro._id} />
+        <div className="flex gap-2">
+          <Button asChild variant="outline">
+            <Link href={`/libros/${libro._id}/editar`}>
+              <Edit className="h-4 w-4 mr-2" />
+              Editar
+            </Link>
+          </Button>
+          <DeleteBookButton id={libro._id} />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

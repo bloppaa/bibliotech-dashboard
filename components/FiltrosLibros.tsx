@@ -24,15 +24,7 @@ const categorias = [
   "Tecnología",
 ];
 
-const idiomas = [
-  "Español",
-  "Inglés",
-  "Francés",
-  "Alemán",
-  "Italiano",
-  "Portugués",
-  "Otro",
-];
+const idiomas = ["Español", "Inglés"];
 
 export function FiltrosLibros() {
   const dispatch = useAppDispatch();
