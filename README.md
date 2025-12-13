@@ -1,130 +1,140 @@
 # BiblioTech Dashboard
 
-Modern library management system with interactive dashboard built with Next.js 14, MongoDB, and Redux Toolkit.
+Sistema moderno de gestión de bibliotecas con un panel interactivo construido con Next.js 16, MongoDB y Redux Toolkit.
 
-## Development Team
+## Grupo Mish
 
 - **Pablo Cortés**: 20.600.436-3
 - **Renata Cuello**: 20.949.079-K
 - **Diego Castro**: 18.633.660-7
 - **Fabricha Ramírez**: 20.990.386-5
 
-## Features
+## Características
 
-- Interactive dashboard with 5+ chart types (Bar, Pie, Line, Area, Radar)
-- Complete CRUD operations for book management
-- Persistent filter system with Redux Toolkit
-- MongoDB database with Mongoose ODM
-- REST API with Next.js App Router
-- Mobile-first responsive design
-- Real-time statistics
+- Panel interactivo con más de 5 tipos de gráficos (Barras, Circular, Línea, Área, Radar)
+- Operaciones CRUD completas para la gestión de libros
+- Sistema de filtrado persistente con Redux Toolkit
+- Base de datos MongoDB con Mongoose ODM
+- API REST con Next.js App Router
+- Diseño responsivo "Mobile-first"
+- Estadísticas en tiempo real
 
-## Technology Stack
+## Stack Tecnológico
 
-- **Frontend**: Next.js 14 (App Router), TypeScript, Tailwind CSS
-- **State Management**: Redux Toolkit with localStorage persistence
-- **Database**: MongoDB + Mongoose
-- **Charts**: Recharts
-- **UI Components**: Shadcn/ui + Lucide React
-- **Validation**: Mongoose Schema Validation
+- **Frontend**: Next.js 16 (App Router), TypeScript, Tailwind CSS
+- **Gestión de Estado**: Redux Toolkit con persistencia en localStorage
+- **Base de Datos**: MongoDB + Mongoose
+- **Gráficos**: Recharts
+- **Componentes UI**: Shadcn/ui + Lucide React
+- **Validación**: Validación de Esquemas Mongoose
 
-## Prerequisites
+## Prerrequisitos
 
-- Node.js 18.17 or higher
-- MongoDB Atlas (free tier) or MongoDB local instance
-- npm or yarn
+- Node.js 18.17 o superior
+- MongoDB Atlas (capa gratuita) o instancia local de MongoDB
+- npm o yarn
 
-## Installation
+## Instalación
 
-### 1. Clone the repository
+Si se quiere usar la aplicación sin necesidad de levantar un servidor local, se puede usar el siguiente enlace:
+
+[https://bibliotech-dashboard.vercel.app/](https://bibliotech-dashboard.vercel.app/)
+
+### 1. Clonar el repositorio
 ```bash
 git clone [REPOSITORY_URL]
 cd bibliotech-dashboard
 ```
 
-### 2. Install dependencies
+### 2. Instalar dependencias
 ```bash
 npm install
 ```
 
-### 3. Configure environment variables
+### 3. Configurar variables de entorno
 
-Create a `.env.local` file in the project root:
+Crea un archivo `.env.local` en la raíz del proyecto:
 ```env
 MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/bibliotech?retryWrites=true&w=majority
 ```
 
-### 4. Seed the database
+### 4. Configuración de MongoDB Atlas
+
+1. Crear clúster gratuito en [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
+2. Crear usuario de base de datos con contraseña
+3. Copiar cadena de conexión y actualizar `.env.local`
+
+### 5. Poblar la base de datos
 ```bash
 npm run seed
 ```
 
-This command will create 15 sample books in the database.
+Este comando creará múltiples libros de ejemplo en la base de datos.
 
-### 5. Start the development server
+### 6. Iniciar el servidor de desarrollo
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-## Project Structure
+## Estructura del Proyecto
 
 ```
 bibliotech-dashboard/
 ├── app/
 │   ├── api/
 │   │   ├── libros/
-│   │   │   ├── route.ts          # GET (all), POST (create)
-│   │   │   └── [id]/route.ts     # GET, PUT, DELETE (by ID)
+│   │   │   ├── route.ts          # GET (todos), POST (crear)
+│   │   │   └── [id]/route.ts     # GET, PUT, DELETE (por ID)
 │   │   └── estadisticas/
-│   │       └── route.ts          # GET dashboard statistics
+│   │       └── route.ts          # GET estadísticas del dashboard
 │   ├── dashboard/
-│   │   └── page.tsx              # Dashboard page
+│   │   └── page.tsx              # Página del Dashboard
 │   ├── libros/
-│   │   └── page.tsx              # Books catalog
-│   ├── layout.tsx                # Root layout
-│   └── page.tsx                  # Home page
+│   │   └── page.tsx              # Catálogo de libros
+│   ├── layout.tsx                # Layout raíz
+│   └── page.tsx                  # Página de inicio
 ├── components/
-│   ├── ui/                       # Shadcn/ui components
-│   └── FiltrosLibros.tsx         # Filters panel
+│   ├── ui/                       # Componentes Shadcn/ui
+│   └── FiltrosLibros.tsx         # Panel de filtros
 ├── lib/
-│   ├── mongodb.ts                # MongoDB connection
+│   ├── mongodb.ts                # Conexión a MongoDB
 │   ├── redux/
 │   │   ├── slices/
-│   │   │   ├── filtrosSlice.ts   # Filters state
-│   │   │   └── librosSlice.ts    # Books state
-│   │   ├── store.ts              # Redux store
-│   │   └── ReduxProvider.tsx     # Provider with persistence
-│   └── utils.ts                  # Utilities
+│   │   │   ├── filtrosSlice.ts   # Estado de filtros
+│   │   │   └── librosSlice.ts    # Estado de libros
+│   │   ├── store.ts              # Store de Redux
+│   │   └── ReduxProvider.tsx     # Provider con persistencia
+│   └── utils.ts                  # Utilidades
 ├── models/
-│   └── Libro.ts                  # Mongoose model
+│   └── Libro.ts                  # Modelo Mongoose
 ├── scripts/
-│   └── seed.ts                   # Database seeding script
+│   └── seed.ts                   # Script de poblado de base de datos
 └── types/
-    ├── index.ts                  # TypeScript types
-    └── mongoose.d.ts             # Global Mongoose types
+    ├── index.ts                  # Tipos TypeScript
+    └── mongoose.d.ts             # Tipos globales de Mongoose
 ```
 
-## API Endpoints
+## Endpoints de la API
 
-### Books
+### Libros
 
-| Method | Endpoint | Description | Query Parameters |
-|--------|----------|-------------|------------------|
-| GET | `/api/libros` | Get all books | `?busqueda=text&categoria=Fiction&idioma=Spanish&disponibilidad=todos&ordenarPor=titulo&orden=asc` |
-| POST | `/api/libros` | Create new book | - |
-| GET | `/api/libros/[id]` | Get book by ID | - |
-| PUT | `/api/libros/[id]` | Update book | - |
-| DELETE | `/api/libros/[id]` | Delete book | - |
+| Método | Endpoint | Descripción | Parámetros de Consulta |
+|--------|----------|-------------|------------------------|
+| GET | `/api/libros` | Obtener todos los libros | `?busqueda=text&categoria=Ficción&idioma=Español&disponibilidad=todos&ordenarPor=titulo&orden=asc` |
+| POST | `/api/libros` | Crear nuevo libro | - |
+| GET | `/api/libros/[id]` | Obtener libro por ID | - |
+| PUT | `/api/libros/[id]` | Actualizar libro | - |
+| DELETE | `/api/libros/[id]` | Eliminar libro | - |
 
-### Statistics
+### Estadísticas
 
-| Method | Endpoint | Description |
+| Método | Endpoint | Descripción |
 |--------|----------|-------------|
-| GET | `/api/estadisticas` | Get all statistics |
+| GET | `/api/estadisticas` | Obtener todas las estadísticas |
 
-**Response Example:**
+**Ejemplo de Respuesta:**
 ```json
 {
   "totalLibros": 15,
@@ -137,106 +147,82 @@ bibliotech-dashboard/
 }
 ```
 
-## Data Model
+## Modelo de Datos
 
-### Book Schema (Mongoose)
+### Esquema de Libro (Mongoose)
 
 ```typescript
 {
-  titulo: string;              // Required
-  autor: string;               // Required
-  isbn: string;                // Required, unique
-  categoria: string;           // Enum: 14 categories
+  titulo: string;              // Requerido
+  autor: string;               // Requerido
+  isbn: string;                // Requerido, único
+  categoria: string;           // Enum: 14 categorías
   descripcion?: string;
-  portada?: string;            // Image URL
+  portada?: string;            // URL de imagen
   editorial: string;
   anioPublicacion: number;
-  idioma: string;              // Enum: Spanish, English, French, etc.
+  idioma: string;              // Enum: Español, Inglés, Francés, etc.
   numeroPaginas: number;
-  disponibles: number;         // Available copies
-  totalCopias: number;         // Total copies
-  prestamos: number;           // Total loans
+  disponibles: number;         // Copias disponibles
+  totalCopias: number;         // Copias totales
+  prestamos: number;           // Préstamos totales
   rating: number;              // 0-5
   fechaAdquisicion: Date;
-  createdAt: Date;             // Auto-generated
-  updatedAt: Date;             // Auto-generated
+  createdAt: Date;             // Autogenerado
+  updatedAt: Date;             // Autogenerado
 }
 ```
 
-## Core Functionalities
+## Funcionalidades Principales
 
 ### Dashboard
-- **Statistics Cards**: Total books, available copies, loans, average rating
-- **Bar Chart**: Books distribution by category
-- **Pie Chart**: Books by language
-- **Line Chart**: Top 10 most borrowed books
-- **Area Chart**: Loan trends over time
-- **Radar Chart**: Multi-dimensional category analysis
+- **Tarjetas de Estadísticas**: Total de libros, copias disponibles, préstamos, calificación promedio
+- **Gráfico de Barras**: Distribución de libros por categoría
+- **Gráfico Circular**: Libros por idioma
+- **Gráfico de Línea**: Top 10 libros más prestados
+- **Gráfico de Área**: Tendencia de préstamos en el tiempo
+- **Gráfico de Radar**: Análisis multidimensional de categorías
 
-### Books Catalog
-- **Search**: By title, author, or description
-- **Filters**: Category, language, availability, status
-- **Sorting**: By title, author, year, rating, loans
-- **Persistence**: Filters are maintained across page reloads
+### Catálogo de Libros
+- **Búsqueda**: Por título, autor o descripción
+- **Filtros**: Categoría, idioma, disponibilidad, estado
+- **Ordenamiento**: Por título, autor, año, calificación, préstamos
+- **Persistencia**: Los filtros se mantienen al recargar la página
 
-### Redux State Management
-- **filtrosSlice**: 8 actions for filter management
-- **librosSlice**: 6 actions for CRUD operations
-- **Persistence**: Automatic synchronization with localStorage
+### Gestión de Estado con Redux
+- **filtrosSlice**: 8 acciones para gestión de filtros
+- **librosSlice**: 6 acciones para operaciones CRUD
+- **Persistencia**: Sincronización automática con localStorage
 
 ## Scripts
 
 ```bash
-# Development server
+# Servidor de desarrollo
 npm run dev
 
-# Build for production
+# Construir para producción
 npm run build
 
-# Start production server
+# Iniciar servidor de producción
 npm start
 
-# Lint code
+# Linting del código
 npm run lint
 
-# Seed database
+# Poblar base de datos
 npm run seed
 ```
 
-## Environment Variables
+## Variables de Entorno
 
-| Variable | Description | Example |
+| Variable | Descripción | Ejemplo |
 |----------|-------------|---------|
-| `MONGODB_URI` | MongoDB connection string | `mongodb+srv://...` |
+| `MONGODB_URI` | Cadena de conexión a MongoDB | `mongodb+srv://...` |
 
-## Deployment
+## Recursos Adicionales
 
-### Vercel (Recommended)
-
-1. Connect repository to Vercel
-2. Add `MONGODB_URI` environment variable
-3. Deploy automatically on push
-
-### MongoDB Atlas Setup
-
-1. Create free cluster at [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas)
-2. Configure Network Access (0.0.0.0/0 for development)
-3. Create database user with password
-4. Copy connection string and update `.env.local`
-
-## Additional Resources
-
-- [Next.js Documentation](https://nextjs.org/docs)
+- [Documentación de Next.js](https://nextjs.org/docs)
 - [MongoDB + Mongoose](https://mongoosejs.com/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Recharts](https://recharts.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
-
-## License
-
-Academic Project - [University Name] - 2025
-
----
-
-**Note**: This project was developed as part of the coursework for Mobile Application Development.
-
