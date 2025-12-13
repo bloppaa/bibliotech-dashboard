@@ -1,38 +1,38 @@
-'use client';
+"use client";
 
-import { useAppDispatch, useAppSelector } from '@/lib/redux/store';
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import {
+  resetFiltros,
   setBusqueda,
   setCategoria,
-  setIdioma,
   setDisponibilidad,
-  setOrdenarPor,
+  setIdioma,
   setOrden,
-  resetFiltros,
-} from '@/lib/redux/slices/filtrosSlice';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Search, X } from 'lucide-react';
+  setOrdenarPor,
+} from "@/lib/redux/slices/filtrosSlice";
+import { useAppDispatch, useAppSelector } from "@/lib/redux/store";
+import { Search, X } from "lucide-react";
 
 const categorias = [
-  'Ficción',
-  'No Ficción',
-  'Ciencia',
-  'Tecnología',
-  'Historia',
-  'Biografía',
-  'Filosofía',
-  'Arte',
-  'Poesía',
-  'Drama',
-  'Infantil',
-  'Juvenil',
-  'Educación',
-  'Referencia',
+  "Ficción",
+  "Historia",
+  "Infantil",
+  "Ciencia",
+  "Filosofía",
+  "Tecnología",
 ];
 
-const idiomas = ['Español', 'Inglés', 'Francés', 'Alemán', 'Italiano', 'Portugués', 'Otro'];
+const idiomas = [
+  "Español",
+  "Inglés",
+  "Francés",
+  "Alemán",
+  "Italiano",
+  "Portugués",
+  "Otro",
+];
 
 export function FiltrosLibros() {
   const dispatch = useAppDispatch();
@@ -42,7 +42,11 @@ export function FiltrosLibros() {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Filtros</CardTitle>
-        <Button variant="outline" size="sm" onClick={() => dispatch(resetFiltros())}>
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => dispatch(resetFiltros())}
+        >
           <X className="h-4 w-4 mr-1" />
           Limpiar
         </Button>
@@ -96,7 +100,9 @@ export function FiltrosLibros() {
 
         {/* Disponibilidad */}
         <div>
-          <label className="text-sm font-medium mb-2 block">Disponibilidad</label>
+          <label className="text-sm font-medium mb-2 block">
+            Disponibilidad
+          </label>
           <select
             className="w-full h-9 rounded-md border border-input bg-transparent px-3 text-sm"
             value={filtros.disponibilidad}

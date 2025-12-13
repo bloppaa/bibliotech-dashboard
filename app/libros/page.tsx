@@ -95,7 +95,7 @@ export default function LibrosPage() {
                             {libro.autor}
                           </p>
                         </div>
-                        <BookOpen className="h-8 w-8 text-purple-600 flex-shrink-0 ml-2" />
+                        <BookOpen className="h-8 w-8 text-purple-600 shrink-0 ml-2" />
                       </div>
                     </CardHeader>
                     <CardContent className="space-y-2">
